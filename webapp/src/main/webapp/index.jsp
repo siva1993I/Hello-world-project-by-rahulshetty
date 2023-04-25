@@ -1,5 +1,2 @@
-<h1> RahulShettyAcademy.com Learning</h1>
-<h2> Learn QA Automation tools + Devops Tools CI/CD pipelines in course from Scratch</h2>
-<h2> Good Luck and we are almost done with the course.Thankyou</h2>
-<h3> Hii This is P VIDYASAGAR</h3>
-<h4> Azure Devops Engineer</h4>
+<h1> Hii This is P VIDYASAGAR</h1>
+<h2> Azure Devops Engineer</h2>
