@@ -30,4 +30,3 @@ steps:
     repository: 'sagar290894b / azuredevops'
     command: 'buildAndPush'
     Dockerfile: '**/AzureDockerfile'
-    buildContext: '**/*.war'
