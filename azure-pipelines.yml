@@ -1,3 +1,9 @@
+# Azure Pipeleines # YAML
+# in steps just write - task: Maven@4 , PublishPipelineArtifact@1  => then settings option will appear click on it
+# and update goal with install and add like this down all mater will come and adjust the spaces for lines
+# similarly for - task: PublishPipelineArtifact@1 => settings will appear click on it and give artifact name & add
+# down all mater will come and adjust the spaces for lines with this yaml script below get project from Hello World
+# by the Rahulshetty for that choose github with yaml withstarter pipeline and paste below yaml script there & run
 trigger: none
 
 pool:
@@ -33,3 +39,20 @@ stages:
            targetPath: '$(Pipeline.Workspace)'
            artifact: 'myartifact'
            publishLocation: 'pipeline'
+  - stage: 'DownloadArtifact'
+    jobs:
+      - deployment: Deploy
+        environment: Stage
+        strategy:
+         runOnce:
+            deploy:
+               steps:
+                - task: DownloadPipelineArtifact@2
+                  inputs:
+                   buildType: 'specific'
+                   project: '581bfcb8-6aa8-4d5d-a1fb-1e3a486469d7'
+                   definition: '62'
+                   specificBuildWithTriggering: true
+                   buildVersionToDownload: 'latest'
+                   artifactName: 'myartifact'
+                   targetPath: '$(Pipeline.Workspace)'
