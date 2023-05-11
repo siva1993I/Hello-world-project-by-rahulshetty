@@ -1,0 +1,35 @@
+trigger: none
+
+pool:
+  vmImage: windows-latest
+
+stages:
+  - stage: dev
+    jobs:
+      - job: gitcode
+        steps:
+          - checkout: self
+  - stage: 'Build'
+    jobs:
+      - job: 'BuildJob'
+        steps:
+        - task: Maven@4
+          inputs:
+           mavenPomFile: 'pom.xml'
+           goals: 'install'
+           publishJUnitResults: true
+           testResultsFiles: '**/surefire-reports/TEST-*.xml'
+           javaHomeOption: 'JDKVersion'
+           mavenVersionOption: 'Default'
+           mavenAuthenticateFeed: false
+           effectivePomSkip: false
+           sonarQubeRunAnalysis: false
+  - stage: 'stage2'
+    jobs:
+      - job: 'job2'
+        steps:
+        - task: PublishPipelineArtifact@1
+          inputs:
+           targetPath: '$(Pipeline.Workspace)'
+           artifact: 'myartifact'
+           publishLocation: 'pipeline'
