@@ -33,11 +33,3 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'demoproject'
             publishLocation: 'Container'
-        - task: AzureRmWebAppDeployment@4
-          inputs:
-            ConnectionType: 'AzureRM'
-            azureSubscription: 'mypaidservice1 (3f350cd7-7ec5-40cf-afbf-7a61b96e8396)'
-            appType: 'webAppLinux'
-            WebAppName: 'webapp9044'
-            packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
-            RuntimeStack: 'TOMCAT|9.0-jre8'
